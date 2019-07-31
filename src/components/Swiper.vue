@@ -52,7 +52,7 @@ export default {
 .swiper
     background: #eeeeee
     width: 100%
-    //height: 31.25vw与下面三行样式设置相同效果，但兼容比较差，为了渲染是自动撑开swiper，不影响下面的页面渲染
+    //height: 31.25vw与下面三行样式设置相同效果，但兼容比较差，为了渲染是自动撑开swiper，不影响下面的页面渲染 占位！！！
     height: 0
     overflow: hidden
     padding-bottom: 36%
