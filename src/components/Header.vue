@@ -18,7 +18,7 @@ export default {
 
 .homeheader
     display: flex
-    line-height: 38px
+    line-height: 31px
     color: #fff
     background: $bgColor
     .headerleft
@@ -40,7 +40,7 @@ export default {
     .headerright
         float: right
         width: 68px
-        margin-top: 6px
+        margin-top: 5px
         font-size: 16px
         .icon-search
             font-size: 12px
