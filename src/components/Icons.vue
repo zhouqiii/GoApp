@@ -1,25 +1,16 @@
 <template>
 <div class="icons">
-    <swiper>
-    <swiper-slide v-for="item of iconList" :key="item.id">
-        <div class="icon">
+    <swiper :options="swiperOption">
+    <swiper-slide v-for="(page,index) in pages" :key="index">
+        <div class="icon" v-for="item of page" :key="item.id">
         <div class="icon-img">
         <img class="icon-img-img" :src="item.srcUrl"/>
         </div>
         <p class="icon-desc">{{item.description}}</p>
-    </div>
-    </swiper-slide>
-    <swiper-slide v-for="item of iconList" :key="item.id">
-        <div class="icon">
-        <div class="icon-img">
-        <img class="icon-img-img" :src="item.srcUrl"/>
         </div>
-        <p class="icon-desc">{{item.description}}</p>
-    </div>
     </swiper-slide>
     </swiper>
 </div>
-    
 </template>
 <script>
 
@@ -27,6 +18,9 @@ export default {
     name: 'HomeIcons',
     data () {
         return {
+            swiperOption: {
+                loop: true
+            },
             iconList: [{
                 id:'000',
                 description: '酒店',
@@ -59,20 +53,38 @@ export default {
                 id:'007',
                 description: '旅游团购',
                 srcUrl: '//s.qunarzz.com/homenode/images/touchheader/tuan.png'
+            },{
+                id:'008',
+                description: '文慧券',
+                srcUrl: 'http://mp-piao-admincp.qunarzz.com/mp_piao_admin_mp_piao_admin/admin/20197/bf88c62458044ca2ef9d733690eef3fc.png'
             }
             ]
+        }
+    },
+    computed: {
+        pages: function () {
+            const pages = []
+            this.iconList.forEach((item,index) => {
+              const page = Math.floor(index / 8)
+              if(!pages[page]) {
+                  pages[page] = []
+              }
+              pages[page].push(item)
+            })
+            return pages
         }
     }
 } 
 </script>
 <style lang="stylus" scoped>
 @import '~@/css/varibles.styl' 
+@import '~@/css/mixin.styl' 
+
 .icons
     overflow: hidden
     height: 0
     width: 100%
     padding-bottom: 50%
-
     .icon
         position: relative
         overflow: hidden
@@ -82,7 +94,7 @@ export default {
         padding-bottom: 25%
         .icon-img
             position: absolute
-            top: 0
+            top: 3px
             left: 0
             right: 0
             bottom: 25px
@@ -97,10 +109,11 @@ export default {
             position: absolute
             left: 0
             right: 0
-            bottom: -16px
+            bottom: -13px
             height: 25px
             line-height: 25px
             font-size: 14px
+            ellipsis()
          
 </style>
 

@@ -47,7 +47,7 @@ export default {
 }
 </script>
 <style lang="stylus" scoped>
-.swiper>>>.swiper-pagination-bullet-active
+.swiper>>>.swiper-pagination-bullet-active//滑点是swiper插件自带的样式，用>>>来自定义改变
     background: #ffffff !important 
 .swiper
     background: #eeeeee
