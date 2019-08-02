@@ -4,9 +4,12 @@ import store from './store'
 import router from './router'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 import './plugins/element.js'
+import './plugins/iconfont.js'
 import 'swiper/dist/css/swiper.css'
 import './css/iconfont.css'
+import axios from 'axios'
 
+Vue.prototype.$axios = axios
 Vue.config.productionTip = false
 Vue.use(VueAwesomeSwiper)
 
