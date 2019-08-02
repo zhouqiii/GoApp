@@ -1,10 +1,10 @@
 <template>
     <div class="home">
-        <home-header></home-header>
-        <home-swiper></home-swiper>
-        <home-icons></home-icons>
-        <home-recommand></home-recommand>
-        <home-weekends></home-weekends>
+        <home-header :city="city"></home-header>
+        <home-swiper :swip="swiperLists"></home-swiper>
+        <home-icons :icons="iconLists"></home-icons>
+        <home-recommand :recommand="recmmandLists"></home-recommand>
+        <home-weekends :weekend="weekendLists"></home-weekends>
     </div>
 </template>
 <script>
@@ -24,12 +24,29 @@ export default {
         HomeRecommand,
         HomeWeekends
     },
+    data () {
+        return {
+            city: '',
+            iconLists: [],
+            swiperLists: [],
+            weekendLists: [],
+            recmmandLists: []
+        }
+    },
     methods: {
         getHomeData: function() {
-            axios.get('/public/mock/index.json').then(this.getHomeDataSucc)
+            axios.get('/mock/index.json').then(this.getHomeDataSucc)
         },
         getHomeDataSucc: function(res) {
-            console.log(res)
+            res = res.data
+           if(res.ret&&res.data) {
+               const data = res.data
+               this.city = data.city
+               this.iconLists = data.iconList
+               this.swiperLists = data.swiperList
+               this.weekendLists = data.weekendList
+               this.recmmandLists = data.recommendList
+           }
         }
     },
     mounted () {

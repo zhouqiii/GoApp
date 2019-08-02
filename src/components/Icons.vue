@@ -1,12 +1,12 @@
 <template>
 <div class="icons">
-    <swiper :options="swiperOption">
+    <swiper :options="swiperOption" v-if="showIcons">
     <swiper-slide v-for="(page,index) in pages" :key="index">
         <div class="icon" v-for="item of page" :key="item.id">
         <div class="icon-img">
-        <img class="icon-img-img" :src="item.srcUrl"/>
+        <img class="icon-img-img" :src="item.imgUrl"/>
         </div>
-        <p class="icon-desc">{{item.description}}</p>
+        <p class="icon-desc">{{item.desc}}</p>
         </div>
     </swiper-slide>
     </swiper>
@@ -16,55 +16,21 @@
 
 export default {
     name: 'HomeIcons',
+    props: {
+        icons: Array
+    },
     data () {
         return {
             swiperOption: {
-                loop: true
-            },
-            iconList: [{
-                id:'000',
-                description: '酒店',
-                srcUrl: '//s.qunarzz.com/homenode/images/touchheader/hotel.png'
-            },{
-                id:'001',
-                description: '机票',
-                srcUrl: '//s.qunarzz.com/homenode/images/touchheader/flight.png'
-            },{
-                id:'002',
-                description: '火车票',
-                srcUrl: '//s.qunarzz.com/homenode/images/touchheader/train.png'
-            },{
-                id:'003',
-                description: '景点门票',
-                srcUrl: '//s.qunarzz.com/homenode/images/touchheader/piao.png'
-            },{
-                id:'004',
-                description: '民宿',
-                srcUrl: '//s.qunarzz.com/homenode/images/touchheader/kezhan.png'
-            },{
-                id:'005',
-                description: '自由行',
-                srcUrl: '//s.qunarzz.com/homenode/images/touchheader/freeTravel.png'
-            },{
-                id:'006',
-                description: '攻略',
-                srcUrl: '//s.qunarzz.com/homenode/images/touchheader/travel.png'
-            },{
-                id:'007',
-                description: '旅游团购',
-                srcUrl: '//s.qunarzz.com/homenode/images/touchheader/tuan.png'
-            },{
-                id:'008',
-                description: '文慧券',
-                srcUrl: 'http://mp-piao-admincp.qunarzz.com/mp_piao_admin_mp_piao_admin/admin/20197/bf88c62458044ca2ef9d733690eef3fc.png'
+                loop: true,
+                autoplay: false
             }
-            ]
         }
     },
     computed: {
         pages: function () {
             const pages = []
-            this.iconList.forEach((item,index) => {
+            this.icons.forEach((item,index) => {
               const page = Math.floor(index / 8)
               if(!pages[page]) {
                   pages[page] = []
@@ -72,6 +38,9 @@ export default {
               pages[page].push(item)
             })
             return pages
+        },
+        showIcons: function () {
+            return this.icons.length
         }
     }
 } 
