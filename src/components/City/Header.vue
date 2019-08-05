@@ -20,8 +20,8 @@ export default {
 <style lang="stylus" scoped>
  @import '~@/css/varibles.styl'
 .cityheader
-    height: 31px
-    line-height: 31px
+    height: 30px
+    line-height: 30px
     position: relative
     background: $bgColor
     .headerleft
