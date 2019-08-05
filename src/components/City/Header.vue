@@ -1,0 +1,43 @@
+<template>
+<div class="cityheader">
+ <router-link to="/">
+    <div class="headerleft">
+        <svg class="icon icon-back" aria-hidden="true">
+            <use xlink:href="#icon-fanhui"></use>
+        </svg>
+        <!-- <i class="el-icon-arrow-left"></i> -->
+    </div>
+ </router-link>
+<div class="headerbody">城市列表</div>
+</div>
+    
+</template>
+<script>
+export default {
+    name: 'CityHeader'
+}
+</script>
+<style lang="stylus" scoped>
+ @import '~@/css/varibles.styl'
+.cityheader
+    height: 31px
+    line-height: 31px
+    position: relative
+    background: $bgColor
+    .headerleft
+        float: left
+        font-size: 17px
+        text-align: center
+        top: 0px
+        left: 10px
+        color: black 
+        position: absolute
+        color: #ffffff
+    .headerbody
+        text-align: center
+        color: #ffffff
+        font-size: 17px
+
+</style>
+
+

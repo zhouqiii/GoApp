@@ -6,7 +6,7 @@
             </svg>热门推荐
         </div>
         <ul style="padding-inline-start:0px;margin-block-start:2px;">
-            <li class="rec-content" style="border-bottom:1px 	#D3D3D3 solid;" v-for="item in recommand" :key="item.id">
+            <li class="rec-content" style="border-bottom:1px #D3D3D3 solid;" v-for="item in recommand" :key="item.id">
                 <img class="rec-imgcontent" :src="item.imgUrl">
                 <div class="rec-info">
                     <p class="rec-infoname">{{item.title}}</p>
@@ -19,15 +19,14 @@
 </template>
 <script>
 export default {
-    name: 'HomeRecommand',
-    props: {
-        recommand: Array
-    }
+  name: 'HomeRecommand',
+  props: {
+    recommand: Array
+  }
 }
 </script>
 <style lang="stylus" scoped>
-@import '~@/css/mixin.styl' 
-
+@import '~@/css/mixin.styl'
 .rec-title
     line-height: 33px
     background: #eeeeee
@@ -63,7 +62,7 @@ export default {
             margin-bottom: 11px
             ellipsis()
         .rec-btn
-            border: none 
+            border: none
             margin-top: -14px
             font-size: 13px
             background-color: #ff9300

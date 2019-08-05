@@ -10,11 +10,13 @@
                 <use xlink:href="#icon-sousuo"></use>
             </svg>输入城市/景点/游玩主题
         </div>
+        <router-link to="/city">
         <div class="headerright">{{this.city}}
             <svg class="icon icon-jiantou" aria-hidden="true">
                 <use xlink:href="#icon-jiantou"></use>
             </svg>
         </div>
+        </router-link>
     </div>
 </template>
 <script>
@@ -53,6 +55,7 @@ export default {
         margin-top: 5px
         margin-bottom: 5px
     .headerright
+        color: #ffffff
         float: right
         width: 68px
         margin-top: 5px
