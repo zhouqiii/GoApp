@@ -22,7 +22,6 @@ export default {
 .cityheader
     height: 30px
     line-height: 30px
-    position: relative
     background: $bgColor
     .headerleft
         float: left

@@ -1,8 +1,9 @@
 <template>
+<div>
 <div class="citysearch">
     <input class="city-input" type="text" placeholder="请输入城市/景点名称"  style="border-color: none"/>
 </div>
-    
+</div>
 </template>
 <script>
 export default {
