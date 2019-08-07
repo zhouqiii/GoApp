@@ -5,7 +5,7 @@
     <div class="title" style="border-top:1px solid #cccccc;border-bottom:1px solid #cccccc">当前位置</div>
     <div class="contentlist">
     <div class="content">
-        <div class="btncontent">{{this.$store.state.city}}</div>
+        <div class="btncontent">{{this.dispalcecity}}</div>
     </div>
     </div>
     </div>
@@ -32,6 +32,8 @@
 </template>
 <script>
 import BScroll from 'better-scroll'
+import { mapState, mapMutations } from 'vuex'//mapState是vuex带的API
+
 export default {
     name: 'CityList',
     props: {
@@ -39,11 +41,19 @@ export default {
         allLists: Object,
         alphabet: String
     },
+    computed: {
+        ...mapState({
+            dispalcecity: 'city'
+        })
+    },
     methods: {
         changecitynn: function(value) {
-            this.$store.dispatch('changecitys',value)
+            this.changeCityName(value)
             this.$router.push('/')
-        }
+        },
+        ...mapMutations({
+            changeCityName: 'changecitys'//或者直接['changecitys']
+        })
     },
     mounted () {
         this.scroll = new BScroll(this.$refs.wrapper)
