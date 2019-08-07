@@ -23,7 +23,7 @@ export default {
       return {
         start: false,
         aY: 0,
-        timer: 0
+        timer: null
       }
     },
     updated () {
