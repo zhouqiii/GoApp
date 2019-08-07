@@ -11,7 +11,7 @@
             </svg>输入城市/景点/游玩主题
         </div>
         <router-link to="/city">
-        <div class="headerright">{{this.city}}
+        <div class="headerright">{{this.$store.state.city}}
             <svg class="icon icon-jiantou" aria-hidden="true">
                 <use xlink:href="#icon-jiantou"></use>
             </svg>
@@ -23,7 +23,7 @@
 export default {
     name: 'HomeHeader',
     props: {
-        city: String
+        // city: String
     }
 }
 </script>

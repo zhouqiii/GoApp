@@ -3,14 +3,17 @@
     <div class="citysearch">
         <input v-model="inputname" class="city-input" type="text" placeholder="请输入城市/景点名称"  style="border-color: none"/>
     </div>
-    <div class="showsearch">
+    <div class="showsearch" ref="inpututil" v-show="inputname">
         <ul>
-            <li v-for="item in lists" :key="item.id">{{item.name}}</li>
+            <li v-for="item in lists" :key="item.id" style="border-bottom:1px solid #cccccc;list-style-type:none;" class="liforinput"  @click="changecitynn(item.name)">{{item.name}}</li>
+            <li v-show="hasinput" style="border-bottom:1px solid #cccccc;list-style-type:none;" class="liforinput">无匹配数据</li>
         </ul>
     </div>
 </div>
 </template>
 <script>
+import BScroll from 'better-scroll'
+
 export default {
     name: 'CitySearch',
     props: {
@@ -23,10 +26,28 @@ export default {
             inputname: ''
         }
     },
+    methods: {
+        changecitynn: function(value) {
+            this.$store.dispatch('changecitys',value)
+            this.$router.push('/')
+        }
+    },
+    mounted () {
+        this.scroll = new BScroll(this.$refs.inpututil)
+    },
+    computed: {
+        hasinput () {
+            return !this.lists.length
+        }
+    },
     watch: {
         inputname () {
             if(this.timer) {
                 clearTimeout(this.timer)
+            }
+            if(!this.inputname) {
+                this.lists = []
+                return 
             }
             this.timer = setTimeout(() => {
                 const results = []
@@ -64,12 +85,15 @@ export default {
 .showsearch
     z-index: 1
     overflow: hidden
-    display: absolute
-    top: 100px
-    left: 0
+    position: absolute
+    top: 60px
+    left: -38px
     right: 0
     bottom: 0
-    background: green 
+    background: #eeeeee 
+    .liforinput
+        line-height: 25px
+        text-align: left 
 </style>
 
 
