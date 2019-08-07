@@ -11,7 +11,7 @@
             </svg>输入城市/景点/游玩主题
         </div>
         <router-link to="/city">
-        <div class="headerright">{{this.testSample}}
+        <div class="headerright">{{this.city}}
             <svg class="icon icon-jiantou" aria-hidden="true">
                 <use xlink:href="#icon-jiantou"></use>
             </svg>
@@ -20,7 +20,7 @@
     </div>
 </template>
 <script>
-import { mapState, mapGetters } from 'vuex'
+ import { mapState } from 'vuex'//, mapGetters
 
 export default {
     name: 'HomeHeader',
@@ -28,8 +28,8 @@ export default {
         // city: String
     },
     computed: {
-        ...mapState(['city']),
-        ...mapGetters(['testSample'])
+        ...mapState(['city'])
+        // ...mapGetters(['testSample'])
     }
 }
 </script>

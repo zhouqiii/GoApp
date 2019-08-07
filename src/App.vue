@@ -1,6 +1,8 @@
 <template>
   <div id="app">
-    <router-view />
+    <keep-alive><!-- vue自带的标签，使ajax请求的数据只需要加载一次，就会保存-->
+     <router-view />
+    </keep-alive>
   </div>
 </template>
 

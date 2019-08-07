@@ -31,6 +31,7 @@ export default {
         changecitynn: function(value) {
             this.changecitys(value)
             this.$router.push('/')
+            this.inputname = ''
         },
         ...mapMutations(['changecitys'])
     },

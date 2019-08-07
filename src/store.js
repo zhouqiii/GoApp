@@ -19,10 +19,10 @@ export default new Vuex.Store({
   // {
   //   city: defaultCity
   // },
-  mutations,
-  getters: {
-    testSample (state) {
-      return state.city + ' ' + state.city
-    }
-  }
+  mutations
+  // getters: {
+  //   testSample (state) {
+  //     return state.city + ' ' + state.city
+  //   }
+  // }
 })
