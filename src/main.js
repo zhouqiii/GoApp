@@ -8,10 +8,12 @@ import './plugins/iconfont.js'
 import 'swiper/dist/css/swiper.css'
 import './css/iconfont.css'
 import axios from 'axios'
+import ElementUI from 'element-ui';
 
 Vue.prototype.$axios = axios
 Vue.config.productionTip = false
 Vue.use(VueAwesomeSwiper)
+Vue.use(ElementUI)
 
 new Vue({
   store,

@@ -1,5 +1,5 @@
 <template>
-<div class="citylist" ref="wrapper">
+<div class="citylists" ref="wrapper" >
   <div>
     <div class="currentArea">
     <div class="title" style="border-top:1px solid #cccccc;border-bottom:1px solid #cccccc">当前位置</div>
@@ -12,74 +12,15 @@
     <div class="hotArea">
     <div class="title" style="border-top:1px solid #cccccc;border-bottom:1px solid #cccccc">热门城市</div>
     <div class="contentlist">
-    <div class="content">
-        <div class="btncontent">北京</div>
-    </div>
-    <div class="content">
-        <div class="btncontent">北京</div>
-    </div>
-    <div class="content">
-        <div class="btncontent">北京</div>
-    </div>
-    <div class="content">
-        <div class="btncontent">北京</div>
-    </div>
-    <div class="content">
-        <div class="btncontent">北京</div>
-    </div>
-    <div class="content">
-        <div class="btncontent">北京</div>
-    </div>
-    <div class="content">
-        <div class="btncontent">北京</div>
-    </div>
-    <div class="content">
-        <div class="btncontent">北京</div>
+    <div class="content"  v-for="item in hotCities" :key="item.id">
+        <div class="btncontent">{{item.name}}</div>
     </div>
     </div>
     </div>
- <div class="allArea">
-    <div class="title" style="border-top:1px solid #cccccc;border-bottom:1px solid #cccccc">A</div>
-    <div class="citylist">
-        <div class="listname">阿拉伯</div>
-        <div class="listname">阿拉伯</div>
-        <div class="listname">阿拉伯</div>
-        <div class="listname">阿拉伯</div>
-        <div class="listname">阿拉伯</div>
-        <div class="listname">阿拉伯</div>
-    </div>
-    </div>
-    <div class="allArea">
-    <div class="title" style="border-top:1px solid #cccccc;border-bottom:1px solid #cccccc">A</div>
-    <div class="citylist">
-        <div class="listname">阿拉伯</div>
-        <div class="listname">阿拉伯</div>
-        <div class="listname">阿拉伯</div>
-        <div class="listname">阿拉伯</div>
-        <div class="listname">阿拉伯</div>
-        <div class="listname">阿拉伯</div>
-    </div>
-    </div>
-    <div class="allArea">
-    <div class="title" style="border-top:1px solid #cccccc;border-bottom:1px solid #cccccc">A</div>
-    <div class="citylist">
-        <div class="listname">阿拉伯</div>
-        <div class="listname">阿拉伯</div>
-        <div class="listname">阿拉伯</div>
-        <div class="listname">阿拉伯</div>
-        <div class="listname">阿拉伯</div>
-        <div class="listname">阿拉伯</div>
-    </div>
-    </div>
-    <div class="allArea">
-    <div class="title" style="border-top:1px solid #cccccc;border-bottom:1px solid #cccccc">A</div>
-    <div class="citylist">
-        <div class="listname">阿拉伯</div>
-        <div class="listname">阿拉伯</div>
-        <div class="listname">阿拉伯</div>
-        <div class="listname">阿拉伯</div>
-        <div class="listname">阿拉伯</div>
-        <div class="listname">阿拉伯</div>
+ <div class="allArea" v-for="(item,key) in allLists" :key="key" :ref="key">
+    <div class="title" style="border-top:1px solid #cccccc;border-bottom:1px solid #cccccc">{{key}}</div>
+    <div class="city">
+        <div class="listname" v-for="cityname in item" :key="cityname.id">{{cityname.name}}</div>
     </div>
     </div>
     </div>
@@ -89,18 +30,32 @@
 import BScroll from 'better-scroll'
 export default {
     name: 'CityList',
+    props: {
+        hotCities: Array,
+        allLists: Object,
+        alphabet: String
+    },
     mounted () {
         this.scroll = new BScroll(this.$refs.wrapper)
+    },
+    watch: {
+        alphabet () {
+            if (this.alphabet) {
+                const element = this.$refs[this.alphabet][0]
+                this.scroll.scrollToElement(element)//scrollToElement是better-scroll自定义的API
+            }
+        }
+        
     }
 }
 </script>
 <style lang="stylus" scoped>
  @import '~@/css/varibles.styl'
- .citylist
-  
+ .citylists
     overflow: hidden
+    position: absolute
+    top: 60px
     left: 0
-    top: 62px
     right: 0
     bottom: 0
     .title
@@ -121,14 +76,12 @@ export default {
                 border-radius: 3px 
                 margin: 3px
                 padding: 2px
-    .citylist 
+    .city 
         text-align: left 
         .listname
             padding-left: 10px
             line-height: 28px
             border-bottom: 1px solid #cccccc
-
-
 </style>
 
 
