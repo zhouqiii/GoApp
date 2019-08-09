@@ -17,53 +17,52 @@ import axios from 'axios'
 import { mapState } from 'vuex'
 
 export default {
-    name: 'Home',
-    components: {
-        lastCity: '',
-        HomeHeader,
-        HomeSwiper,
-        HomeIcons,
-        HomeRecommand,
-        HomeWeekends
+  name: 'Home',
+  components: {
+    lastCity: '',
+    HomeHeader,
+    HomeSwiper,
+    HomeIcons,
+    HomeRecommand,
+    HomeWeekends
+  },
+  data () {
+    return {
+        iconLists: [],
+        swiperLists: [],
+        weekendLists: [],
+        recmmandLists: []
+    }
+  },
+  computed: {
+    ...mapState(['city'])
+  },
+  methods: {
+    getHomeData: function() {
+        axios.get('/mock/index.json?city=' + this.city).then(this.getHomeDataSucc)
     },
-    data () {
-        return {
-            iconLists: [],
-            swiperLists: [],
-            weekendLists: [],
-            recmmandLists: []
+    getHomeDataSucc: function(res) {
+        res = res.data
+        if(res.ret&&res.data) {
+            const data = res.data
+            this.iconLists = data.iconList
+            this.swiperLists = data.swiperList
+            this.weekendLists = data.weekendList
+            this.recmmandLists = data.recommendList
         }
-    },
-    computed: {
-        ...mapState(['city'])
-    },
-    methods: {
-        getHomeData: function() {
-            axios.get('/mock/index.json?city=' + this.city).then(this.getHomeDataSucc)
-        },
-        getHomeDataSucc: function(res) {
-            res = res.data
-           if(res.ret&&res.data) {
-               const data = res.data
-               this.iconLists = data.iconList
-               this.swiperLists = data.swiperList
-               this.weekendLists = data.weekendList
-               this.recmmandLists = data.recommendList
-           }
-        }
-    },
-    mounted () {
+    }
+  },
+  mounted () {
+    this.lastCity = this.city
+    this.getHomeData()
+  },
+  activated () {
+    if(this.lastCity !== this.city) {
         this.lastCity = this.city
         this.getHomeData()
-    },
-    activated () {
-        if(this.lastCity !== this.city) {
-            this.lastCity = this.city
-            this.getHomeData()
-        } 
-    }
+    } 
+  }
 }
 </script>
 <style scoped>
 </style>
-

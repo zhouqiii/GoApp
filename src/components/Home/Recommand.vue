@@ -6,14 +6,21 @@
             </svg>热门推荐
         </div>
         <ul style="padding-inline-start:0px;margin-block-start:2px;">
-            <li class="rec-content" style="border-bottom:1px #D3D3D3 solid;" v-for="item in recommand" :key="item.id">
+            <router-link 
+              tag="li"
+              class="rec-content" 
+              style="border-bottom:1px #D3D3D3 solid;" 
+              v-for="item in recommand" 
+              :key="item.id" 
+              :to="'/detail/'+item.id"
+            >
                 <img class="rec-imgcontent" :src="item.imgUrl">
                 <div class="rec-info">
                     <p class="rec-infoname">{{item.title}}</p>
                     <p class="rec-infomation">{{item.desc}}</p>
                     <button class="rec-btn">查看详情</button>
                 </div>
-            </li>
+            </router-link>
         </ul>
     </div>
 </template>

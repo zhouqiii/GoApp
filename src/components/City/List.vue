@@ -13,7 +13,7 @@
     <div class="title" style="border-top:1px solid #cccccc;border-bottom:1px solid #cccccc">热门城市</div>
     <div class="contentlist">
     <div class="content"
-        v-for="item in hotCities"  
+        v-for="item in hotCities"
         :key="item.id"
         @click="changecitynn(item.name)"
     >
@@ -35,38 +35,37 @@ import BScroll from 'better-scroll'
 import { mapState, mapMutations } from 'vuex'//mapState是vuex带的API
 
 export default {
-    name: 'CityList',
-    props: {
-        hotCities: Array,
-        allLists: Object,
-        alphabet: String
+  name: 'CityList',
+  props: {
+    hotCities: Array,
+    allLists: Object,
+    alphabet: String
     },
-    computed: {
-        ...mapState({
-            dispalcecity: 'city'
+  computed: {
+    ...mapState({
+        dispalcecity: 'city'
         })
     },
-    methods: {
-        changecitynn: function(value) {
-            this.changeCityName(value)
-            this.$router.push('/')
+  methods: {
+    changecitynn: function(value) {
+        this.changeCityName(value)
+        this.$router.push('/')
         },
-        ...mapMutations({
-            changeCityName: 'changecitys'//或者直接['changecitys']
+    ...mapMutations({
+        changeCityName: 'changecitys'//或者直接['changecitys']
         })
     },
-    mounted () {
+  mounted () {
         this.scroll = new BScroll(this.$refs.wrapper)
-    },
-    watch: {
-        alphabet () {
-            if (this.alphabet) {
-                const element = this.$refs[this.alphabet][0]
-                this.scroll.scrollToElement(element)//scrollToElement是better-scroll自定义的API
-            }
-        }
-        
+  },
+  watch: {
+    alphabet () {
+      if (this.alphabet) {
+        const element = this.$refs[this.alphabet][0]
+        this.scroll.scrollToElement(element)// scrollToElement是better-scroll自定义的API
+      }
     }
+  }
 }
 </script>
 <style lang="stylus" scoped>
@@ -93,15 +92,13 @@ export default {
             .btncontent
                 border: 1px solid #cccccc
                 text-align: center
-                border-radius: 3px 
+                border-radius: 3px
                 margin: 3px
                 padding: 2px
-    .city 
-        text-align: left 
+    .city
+        text-align: left
         .listname
             padding-left: 10px
             line-height: 28px
             border-bottom: 1px solid #cccccc
 </style>
-
-
