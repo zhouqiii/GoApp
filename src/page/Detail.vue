@@ -8,14 +8,18 @@
         </div>
     </div>
     <commen-gallary :imgdetail="imgdetail" v-show="showgallary" @change="hidegallary"></commen-gallary>
+    <header-gallary></header-gallary>
+    <div class="cheng"></div>
 </div>
 </template>
 <script>
 import CommenGallary from '../components/gallary/Gallary.vue'
+import HeaderGallary from '../components/gallary/Header.vue'
 export default {
     name: 'Detail',
     components: {
-        CommenGallary
+        CommenGallary,
+        HeaderGallary
     },
     data () {
         return {
@@ -63,7 +67,8 @@ export default {
             padding: 0 17px
             background: rgba(0, 0, 0, .8)//設置背景色，設置透明度
             font-size: 14px
-            
+.cheng
+    height: 800px 
 </style>
 
 
