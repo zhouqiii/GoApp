@@ -5,9 +5,9 @@
                 <use xlink:href="#icon-huore"></use>
             </svg>热门推荐
         </div>
-        <ul style="padding-inline-start:0px;margin-block-start:2px;">
+        <div style="padding-inline-start:0px;margin-block-start:2px;">
             <router-link 
-              tag="li"
+              tag="div"
               class="rec-content" 
               style="border-bottom:1px #D3D3D3 solid;" 
               v-for="item in recommand" 
@@ -21,7 +21,7 @@
                     <button class="rec-btn">查看详情</button>
                 </div>
             </router-link>
-        </ul>
+        </div>
     </div>
 </template>
 <script>
@@ -48,11 +48,11 @@ export default {
     height: 98px
     display: flex
     margin-top: 5px
-    margin-left: 4px
+    margin-left: 2px
     .rec-imgcontent
         height: 96px
         width: 96px
-        padding: 0px 2px
+        padding: 0px 0px
     .rec-info
         flex: 1
         padding-left: 8px

@@ -3,8 +3,8 @@
         <div class="rec-title">
             周末去哪儿
         </div>
-        <ul style="padding-inline-start:0px;margin-block-start:2px;">
-            <li class="rec-content" style="border-bottom:1px 	#D3D3D3 solid;" v-for="item in weekend" :key="item.id">
+        <div style="padding-inline-start:0px;margin-block-start:2px;">
+            <div class="rec-content" style="border-bottom:1px #D3D3D3 solid;" v-for="item in weekend" :key="item.id">
                 <div class="weekimg">
                 <img class="rec-imgcontent" :src="item.imgUrl">
                 </div>
@@ -12,8 +12,8 @@
                     <p class="rec-infoname">{{item.title}}</p>
                     <p class="rec-infomation">{{item.desc}}</p>
                 </div>
-            </li>
-        </ul>
+            </div>
+        </div>
     </div>
 </template>
 <script>

@@ -1,31 +1,43 @@
 <template>
 <div>
     <div class="banner" @click="changegallary">
-        <img class="bannerimg" src="http://img1.qunarzz.com/sight/p0/1410/e3/73da8d3e19cdc41c1932d4fcd22ec792.water.jpg_350x240_af846382.jpg" />
+        <img class="bannerimg" :src="bannerImg" />
         <div class="bannerinfo">
-            <div class="bannertitle">故宫(AAAAA景区)</div>
+            <div class="bannertitle">{{sightName}}</div>
             <div class="bannericon"><i class="el-icon-picture"></i>11</div>
         </div>
     </div>
-    <commen-gallary :imgdetail="imgdetail" v-show="showgallary" @change="hidegallary"></commen-gallary>
+    <fade-animation>
+    <commen-gallary :imgdetail="gallaryImgs" v-show="showgallary" @change="hidegallary"></commen-gallary>
+    </fade-animation>
     <header-gallary></header-gallary>
-    <div class="cheng"></div>
+    <div class="cheng">
+        <detail-list :categoryList="categoryList"></detail-list>
+    </div>
 </div>
 </template>
 <script>
 import CommenGallary from '../components/gallary/Gallary.vue'
 import HeaderGallary from '../components/gallary/Header.vue'
+import DetailList from '../components/detailList/List.vue'
+import FadeAnimation from '../components/fadeanimation/FadeAnimation.vue'
+import axios from 'axios'
+
 export default {
     name: 'Detail',
     components: {
         CommenGallary,
-        HeaderGallary
+        HeaderGallary,
+        DetailList,
+        FadeAnimation
     },
     data () {
         return {
-            imgdetail: ['http://img1.qunarzz.com/wugc/p123/201211/19/a2045d091f02b25493835fbb.png_350x240_cf4cd08e.png',
-                'http://img1.qunarzz.com/wugc/p238/201306/16/d9090c728fed64eb93835fbb.jpg_350x240_afe6c0fa.jpg'],
-            showgallary: false
+            showgallary: false,
+            sightName: '',
+            bannerImg: '',
+            gallaryImgs: [],
+            categoryList: []
         }
     },
     methods: {
@@ -34,7 +46,28 @@ export default {
         },
         hidegallary () {
             this.showgallary = false
+        },
+        getJsonInfo () {
+            axios.get('/mock/detail.json',{
+            params: {
+                id: this.$route.params.id//详情页绑定了动态路由的pathname
+            }
+            }).then(this.getinfosucc)
+        },
+        getinfosucc (res) {
+            // console.log(res)
+            res = res.data
+            if (res.ret && res.data) {
+            const data = res.data
+            this.sightName = data.sightName
+            this.bannerImg = data.bannerImg
+            this.gallaryImgs = data.gallaryImgs
+            this.categoryList = data.categoryList
         }
+      }
+    },
+    mounted () {
+        this.getJsonInfo()
     }
 }
 </script>

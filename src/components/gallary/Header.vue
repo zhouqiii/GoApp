@@ -6,7 +6,7 @@
         class="backchange"
         v-show="showheader"
       >
-        <i class="el-icon-arrow-left"></i>
+      <i class="el-icon-arrow-left"></i>
       </router-link>
       <div class="topchange" v-show="!showheader" :style="styOpicaty">
         <router-link to="/">
@@ -33,7 +33,7 @@ export default {
     },
     methods: {
         listenScroll () {
-            // console.log(document.documentElement.scrollTop)
+            // console.log('scroll')
             const toppx = document.documentElement.scrollTop
             if (toppx > 34) {
                 let opacity = toppx / 150
@@ -46,7 +46,10 @@ export default {
         }
     },
     activated () {
-        window.addEventListener('scroll',this.listenScroll)//js的API
+        window.addEventListener('scroll',this.listenScroll)//js的API,window.是全局变量，除详情页还会影响其它页面
+    },
+    deactivated () {
+        window.removeEventListener('scroll',this.listenScroll)//js的API,解绑window.全局变量，关闭详情页，不会影响其他页面
     }
 }
 </script>
@@ -86,6 +89,5 @@ export default {
         text-align: center
         color: #ffffff
         font-size: 16px
-
 </style>
 
