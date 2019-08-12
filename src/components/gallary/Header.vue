@@ -27,7 +27,7 @@ export default {
         return {
             showheader: true,
             styOpicaty: {
-                opacity: 1
+                opacity: 0
             }
         }
     },
@@ -45,11 +45,11 @@ export default {
             }
         }
     },
-    activated () {
+    mounted () {
         window.addEventListener('scroll',this.listenScroll)//js的API,window.是全局变量，除详情页还会影响其它页面
     },
-    deactivated () {
-        window.removeEventListener('scroll',this.listenScroll)//js的API,解绑window.全局变量，关闭详情页，不会影响其他页面
+    unmounted () {
+        window.removeEventListener('scroll',this.listenScroll)//removeEventListener是js的API,解绑window.全局变量，关闭详情页，不会影响其他页面
     }
 }
 </script>
